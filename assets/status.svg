@@ -6,7 +6,7 @@
 <rect width="1000" height="210" fill="url(#g)"/>
 <text x="34" y="34" font-size="12" fill="#8a8578" letter-spacing="2">LIVE SYSTEM STATUS</text>
 <circle cx="196" cy="30" r="4" fill="#c0392b"><animate attributeName="opacity" values="1;0.2;1" dur="2s" repeatCount="indefinite"/></circle>
-<text x="966" y="34" text-anchor="end" font-size="11" fill="#8a8578">rebuilt 2026-07-30 04:07 UTC</text>
+<text x="966" y="34" text-anchor="end" font-size="11" fill="#8a8578">rebuilt 2026-07-30 04:08 UTC</text>
 <line x1="34" y1="46" x2="966" y2="46" stroke="#111111"/>
 
   <text x="34" y="62" font-size="11" fill="#6b665c" letter-spacing="1.2">PUBLIC REPOS</text>
