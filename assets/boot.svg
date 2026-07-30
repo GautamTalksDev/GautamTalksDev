@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 400" width="1000" height="400" role="img" aria-label="Boot sequence: Gautam Khosla, Computer Engineering, University of Ottawa">
+<defs>
+  <linearGradient id="nm" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#22d3ee"/><stop offset="50%" stop-color="#818cf8"/><stop offset="100%" stop-color="#22d3ee"/>
+    <animateTransform attributeName="gradientTransform" type="translate" from="-1 0" to="1 0" dur="7s" repeatCount="indefinite"/>
+  </linearGradient>
+  <linearGradient id="bg" x1="0" y1="0" x2="0.7" y2="1">
+    <stop offset="0%" stop-color="#03050a"/><stop offset="100%" stop-color="#080d18"/>
+  </linearGradient>
+  <radialGradient id="crt" cx="50%" cy="45%" r="65%">
+    <stop offset="0%" stop-color="#0d9488" stop-opacity="0.10"/><stop offset="100%" stop-color="#000" stop-opacity="0.55"/>
+  </radialGradient>
+  <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse">
+    <rect width="4" height="1" fill="#5eead4" opacity="0.045"/>
+  </pattern>
+  <clipPath id="fr"><rect width="1000" height="400" rx="14"/></clipPath>
+</defs>
+
+<g clip-path="url(#fr)" font-family="Courier New,monospace">
+  <rect width="1000" height="400" fill="url(#bg)"/>
+
+  <!-- title bar -->
+  <rect width="1000" height="34" fill="#0c1322"/>
+  <circle cx="24" cy="17" r="5" fill="#ef4444"/><circle cx="42" cy="17" r="5" fill="#f59e0b"/><circle cx="60" cy="17" r="5" fill="#22c55e"/>
+  <text x="500" y="22" text-anchor="middle" font-size="12" fill="#475569">gautam@uottawa: ~/systems</text>
+
+  <g font-size="14.5">
+    <!-- POST -->
+    <text x="34" y="72" fill="#475569">&gt; POST<tspan fill="#1e293b"> ..................................... </tspan><tspan fill="#22c55e">OK</tspan>
+      <animate attributeName="opacity" values="0;1;1" keyTimes="0;0.05;1" dur="8s" repeatCount="indefinite"/></text>
+    <text x="34" y="94" fill="#475569">&gt; init subsystems<tspan fill="#1e293b"> ......................... </tspan><tspan fill="#22c55e">4 found</tspan>
+      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.09;0.11;1" dur="8s" repeatCount="indefinite"/></text>
+
+    <!-- mounts -->
+    <text x="34" y="128" fill="#64748b">mount <tspan fill="#22d3ee">aegis</tspan><tspan fill="#1e293b"> ....... </tspan><tspan fill="#94a3b8">qnx8.0 aarch64 &#183; c++20 &#183; edge inference</tspan><tspan fill="#1e293b"> .. </tspan><tspan fill="#22c55e">[ OK ]</tspan>
+      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.16;0.18;1" dur="8s" repeatCount="indefinite"/></text>
+    <text x="34" y="152" fill="#64748b">mount <tspan fill="#22d3ee">hypershift</tspan><tspan fill="#1e293b"> .. </tspan><tspan fill="#94a3b8">5-agent orchestrator &#183; live deploy</tspan><tspan fill="#1e293b"> ...... </tspan><tspan fill="#22c55e">[ OK ]</tspan>
+      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.24;0.26;1" dur="8s" repeatCount="indefinite"/></text>
+    <text x="34" y="176" fill="#64748b">mount <tspan fill="#22d3ee">metashift</tspan><tspan fill="#1e293b"> ... </tspan><tspan fill="#94a3b8">multi-tenant rls &#183; audit &#183; replay</tspan><tspan fill="#1e293b"> ....... </tspan><tspan fill="#22c55e">[ OK ]</tspan>
+      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.32;0.34;1" dur="8s" repeatCount="indefinite"/></text>
+    <text x="34" y="200" fill="#64748b">mount <tspan fill="#22d3ee">workshift</tspan><tspan fill="#1e293b"> ... </tspan><tspan fill="#94a3b8">human-in-the-loop approval gate</tspan><tspan fill="#1e293b"> ........ </tspan><tspan fill="#22c55e">[ OK ]</tspan>
+      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.40;0.42;1" dur="8s" repeatCount="indefinite"/></text>
+
+    <!-- progress -->
+    <g><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.13;0.15;0.48;0.52" dur="8s" repeatCount="indefinite"/>
+      <rect x="34" y="220" width="420" height="6" rx="3" fill="#0f1a2e"/>
+      <rect x="34" y="220" height="6" rx="3" fill="#22d3ee">
+        <animate attributeName="width" values="0;0;420;420" keyTimes="0;0.15;0.44;1" dur="8s" repeatCount="indefinite"/>
+      </rect>
+    </g>
+
+    <text x="34" y="252" fill="#475569">&gt; all subsystems nominal. handing off to user.
+      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.48;0.50;1" dur="8s" repeatCount="indefinite"/></text>
+  </g>
+
+  <!-- identity -->
+  <g><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.55;0.60;1" dur="8s" repeatCount="indefinite"/>
+    <line x1="34" y1="272" x2="966" y2="272" stroke="#152238"/>
+    <text x="34" y="322" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="46" font-weight="700" letter-spacing="1" fill="url(#nm)">GAUTAM KHOSLA</text>
+    <text x="37" y="348" font-size="12.5" fill="#64748b" letter-spacing="1.5">COMPUTER ENGINEERING &#183; UNIVERSITY OF OTTAWA &#183; OPEN TO INTERNSHIPS</text>
+  </g>
+
+  <g><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.66;0.70;1" dur="8s" repeatCount="indefinite"/>
+    <text x="34" y="380" font-size="14.5" fill="#475569"><tspan fill="#22d3ee">$</tspan> c++20 &#183; qnx &#183; typescript &#183; postgres &#183; distributed systems</text>
+  </g>
+  <rect x="470" y="368" width="8" height="15" fill="#22d3ee">
+    <animate attributeName="opacity" values="0;0;1;0;1;0;1" keyTimes="0;0.70;0.75;0.80;0.85;0.90;1" dur="8s" repeatCount="indefinite"/>
+  </rect>
+
+  <rect width="1000" height="400" fill="url(#scan)"/>
+  <rect width="1000" height="400" fill="url(#crt)"/>
+  <rect x="0.5" y="0.5" width="999" height="399" rx="14" fill="none" stroke="#152238"/>
+</g>
+</svg>
