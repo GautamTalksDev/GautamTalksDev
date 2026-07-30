@@ -7,23 +7,26 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: write
+
+concurrency:
+  group: snake
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
-      - name: Generate snake SVGs
-        uses: Platane/snk@v3
+      # Palette matches assets/datasheet.svg: paper stock, ink dots, red plotter line.
+      - uses: Platane/snk@v3
         id: snake
         with:
           github_user_name: ${{ github.repository_owner }}
           outputs: |
-            dist/snake.svg
-            dist/snake-dark.svg?palette=github-dark
+            dist/snake.svg?color_snake=%23c0392b&color_dots=%23e8e5dc,%23cfcabb,%238a8578,%234a463c,%23111111
 
-      - name: Push to output branch
-        uses: crazy-max/ghaction-github-pages@v4
+      - uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: output
           build_dir: dist
