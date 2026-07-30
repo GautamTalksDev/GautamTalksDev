@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 210" width="1000" height="210" role="img" aria-label="Live status panel">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0%" stop-color="#f4f2ec"/><stop offset="100%" stop-color="#eeebe2"/></linearGradient>
+<clipPath id="c"><rect width="1000" height="210" rx="14"/></clipPath></defs>
+<g clip-path="url(#c)" font-family="Courier New,monospace">
+<rect width="1000" height="210" fill="url(#g)"/>
+<text x="34" y="34" font-size="12" fill="#8a8578" letter-spacing="2">LIVE SYSTEM STATUS</text>
+<circle cx="196" cy="30" r="4" fill="#c0392b"><animate attributeName="opacity" values="1;0.2;1" dur="2s" repeatCount="indefinite"/></circle>
+<text x="966" y="34" text-anchor="end" font-size="11" fill="#8a8578">rebuilt 2026-07-30 06:04 UTC</text>
+<line x1="34" y1="46" x2="966" y2="46" stroke="#111111"/>
+
+  <text x="34" y="62" font-size="11" fill="#6b665c" letter-spacing="1.2">PUBLIC REPOS</text>
+  <text x="34" y="98" font-size="30" font-weight="700" fill="#c0392b">7</text>
+
+  <text x="234" y="62" font-size="11" fill="#6b665c" letter-spacing="1.2">LANGUAGES</text>
+  <text x="234" y="98" font-size="30" font-weight="700" fill="#111111">5</text>
+
+  <text x="414" y="62" font-size="11" fill="#6b665c" letter-spacing="1.2">LAST PUSH</text>
+  <text x="414" y="98" font-size="30" font-weight="700" fill="#c0392b">0h</text>
+
+  <text x="594" y="62" font-size="11" fill="#6b665c" letter-spacing="1.2">FOLLOWING</text>
+  <text x="594" y="98" font-size="30" font-weight="700" fill="#111111">4</text>
+
+  <text x="774" y="62" font-size="11" fill="#6b665c" letter-spacing="1.2">STACK</text>
+  <text x="774" y="98" font-size="30" font-weight="700" fill="#111111">JTCP</text>
+<line x1="34" y1="126" x2="966" y2="126" stroke="#111111"/>
+<text x="34" y="154" font-size="13" fill="#6b665c">last commit <tspan fill="#c0392b">GautamTalksDev</tspan></text>
+<text x="34" y="176" font-size="13" fill="#333333">"—"</text>
+<text x="966" y="176" text-anchor="end" font-size="12" fill="#8a8578">javascript:2  typescript:2  c++:1  python:1</text>
+<rect x="0.5" y="0.5" width="999" height="209" rx="14" fill="none" stroke="#111111"/>
+</g></svg>
