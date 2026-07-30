@@ -11,7 +11,9 @@
 
 <br/>
 
-I build systems where the hard part is what happens when something fails — real-time scheduling guarantees, tenant isolation, human approval gates. Computer Engineering at the University of Ottawa, open to **backend / systems / infrastructure internships**.
+Computer Engineering at the University of Ottawa. Most of what I build is defined by its failure case rather than its happy path — an alarm that has to fire whether or not the network is up, a deploy pipeline that refuses to ship without a human signature, a database that must not leak one tenant's rows into another's.
+
+Open to **backend / systems / infrastructure internships**.
 
 <br/>
 
@@ -27,31 +29,39 @@ I build systems where the hard part is what happens when something fails — rea
 
 <sub>`C++20` · `QNX 8.0 RTOS` · `Raspberry Pi 5` · `TFLite` · [repo →](https://github.com/GautamTalksDev/AEGIS)</sub>
 
-Deterministic edge-AI worksite safety system. Person and PPE detection run entirely on-device — the safety loop never touches the network. GPIO and relay fire at `SCHED_FIFO` priority 30; audio playback sits at priority 8, so I/O can never delay an alarm. Four QNX processes communicate over `MsgSend`/`MsgReceive` with trivially-copyable POD structs.
+Worksite safety system that detects missing PPE and fires an alarm — entirely on-device, because a safety alarm that needs an API call to speak isn't a safety alarm.
+
+GPIO and relay run at `SCHED_FIFO` priority 30; voice playback sits at priority 8, so audio I/O can never delay the alarm. Four QNX processes pass trivially-copyable POD structs over `MsgSend`/`MsgReceive`. The cloud makes the device smarter; it never makes it dependent.
 
 ## 02 · HyperShift
 
 <sub>`Next.js 14` · `Node` · `Turborepo` · `Postgres` · [repo →](https://github.com/GautamTalksDev/HyperShift) · [**live demo →**](https://hyper-shift-dashboard.vercel.app)</sub>
 
-Describe infrastructure in plain English; five specialized agents plan, build, scan, deploy, and monitor it. Approval gates before anything ships, workspace isolation, immutable audit log, REST API and CLI.
+Describe infrastructure in plain English and five specialized agents take it from there — plan, build, scan, deploy, monitor.
+
+Every run is workspace-scoped, metered, and written to an immutable audit log. Nothing reaches production without passing an approval gate. REST API and CLI alongside the dashboard.
 
 ## 03 · MetaShift
 
 <sub>`Express` · `React` · `Supabase` · `PLpgSQL` · [repo →](https://github.com/GautamTalksDev/MetaShift)</sub>
 
-Multi-tenant observability plane — conflict detection, auto-resolution, incident replay. Ten SQL migrations with tenant-scoped row-level security, usage metering, audit log, revocable API keys.
+Multi-tenant observability plane: detects conflicts across distributed services, resolves what it can automatically, and lets you replay any incident from the event stream.
+
+Ten SQL migrations building up tenant-scoped row-level security, usage metering, an append-only audit log, and revocable API keys.
 
 ## 04 · Work-Shift
 
 <sub>`Fastify` · `Cloudflare Workers` · `pnpm monorepo` · `Playwright` · [repo →](https://github.com/GautamTalksDev/Work-Shift)</sub>
 
-AI approval inbox for Slack — nothing sends until a human approves it. Ships with `docs/AUTOMATION_REALITY.md`, which states plainly which parts are automated, which are human-in-the-loop, and which are demo-only.
+An approval inbox for AI-drafted Slack messages. Drafts queue up; nothing sends until a human clicks approve.
+
+Ships with `docs/AUTOMATION_REALITY.md`, which labels every feature as fully automated, human-in-the-loop, or demo-only — because the useful thing to document is what *doesn't* work yet.
 
 ## 05 · DSA
 
 <sub>`Java` · [repo →](https://github.com/GautamTalksDev/DSA-Programming-Assignments)</sub>
 
-Data structures and algorithms implemented through university coursework.
+Data structures and algorithms, implemented from scratch through university coursework.
 
 ---
 
