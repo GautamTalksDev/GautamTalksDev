@@ -1,79 +1,82 @@
 <div align="center">
 
-<img src="./assets/datasheet.svg" width="100%" alt="Datasheet — G. Khosla, Computer Engineering, University of Ottawa" />
+<img src="./assets/spec.svg" width="100%" alt="Gautam Khosla — real-time systems and backend infrastructure, University of Ottawa" />
 
-<a href="https://www.linkedin.com/in/gautam-khosla/"><img src="https://img.shields.io/badge/LinkedIn-111111?style=flat-square&logo=linkedin&logoColor=f4f2ec" alt="LinkedIn"/></a>
-<a href="http://www.youtube.com/@GautamKhoslaOfficial"><img src="https://img.shields.io/badge/YouTube-111111?style=flat-square&logo=youtube&logoColor=f4f2ec" alt="YouTube"/></a>
-<a href="https://bio.site/gautamtalks"><img src="https://img.shields.io/badge/Links-111111?style=flat-square&logoColor=f4f2ec" alt="Links"/></a>
-<a href="mailto:developwith.gt@gmail.com"><img src="https://img.shields.io/badge/Email-111111?style=flat-square&logo=maildotru&logoColor=f4f2ec" alt="Email"/></a>
+### [→ Open the live demo](https://hyper-shift-dashboard.vercel.app)
 
-</div>
+<sub>No install. The panel below reports whether it is up, probed every six hours.</sub>
 
 <br/>
 
-Computer Engineering at the University of Ottawa. Most of what I build is defined by its failure case rather than its happy path — an alarm that has to fire whether or not the network is up, a deploy pipeline that refuses to ship without a human signature, a database that must not leak one tenant's rows into another's.
+<img src="./assets/panel.svg" width="100%" alt="Live deployment probe and repository telemetry" />
 
-Open to **backend / systems / infrastructure internships**.
-
-<br/>
-
-<div align="center">
-<img src="./assets/status.svg" width="100%" alt="Live status panel, regenerated daily by GitHub Actions" />
 </div>
 
-<sub>Not a badge service. A scheduled Action queries the GitHub API each morning, renders this SVG, and commits it back to the repo — [`scripts/gen-status.mjs`](./scripts/gen-status.mjs)</sub>
+<sub>This panel is not a badge service. A scheduled Action pings my deployments, measures latency, renders this SVG, commits it back — and opens an issue against this repo if anything is down. Source: [`scripts/gen-panel.mjs`](./scripts/gen-panel.mjs)</sub>
 
 ---
 
-## 01 · AEGIS
+Computer Engineering at the University of Ottawa. Most of what I build is defined by its failure case, not its happy path: an alarm that fires whether or not the network is up, a deploy that refuses to ship without a human signature, a database that must never leak one tenant's rows into another's.
 
-<sub>`C++20` · `QNX 8.0 RTOS` · `Raspberry Pi 5` · `TFLite` · [repo →](https://github.com/GautamTalksDev/AEGIS)</sub>
+**Open to backend / systems / infrastructure internships.** · [developwith.gt@gmail.com](mailto:developwith.gt@gmail.com) · [LinkedIn](https://www.linkedin.com/in/gautam-khosla/) · [YouTube](http://www.youtube.com/@GautamKhoslaOfficial)
 
-Worksite safety system that detects missing PPE and fires an alarm — entirely on-device, because a safety alarm that needs an API call to speak isn't a safety alarm.
+---
 
-GPIO and relay run at `SCHED_FIFO` priority 30; voice playback sits at priority 8, so audio I/O can never delay the alarm. Four QNX processes pass trivially-copyable POD structs over `MsgSend`/`MsgReceive`. The cloud makes the device smarter; it never makes it dependent.
+### [AEGIS](https://github.com/GautamTalksDev/AEGIS) — worksite safety, on-device
 
-## 02 · HyperShift
+Detects missing PPE and fires an alarm without touching the network, because a safety alarm that needs an API call to speak isn't a safety alarm.
 
-<sub>`Next.js 14` · `Node` · `Turborepo` · `Postgres` · [repo →](https://github.com/GautamTalksDev/HyperShift) · [**live demo →**](https://hyper-shift-dashboard.vercel.app)</sub>
+<details><summary><sub><b>how it holds its timing</b></sub></summary><br/>
 
-Describe infrastructure in plain English and five specialized agents take it from there — plan, build, scan, deploy, monitor.
+GPIO and relay run at `SCHED_FIFO` priority 30; voice playback sits at priority 8, so audio I/O can never delay the alarm. Four QNX processes pass trivially-copyable POD structs over `MsgSend`/`MsgReceive`. The cloud gateway makes the device smarter — never dependent.
 
-Every run is workspace-scoped, metered, and written to an immutable audit log. Nothing reaches production without passing an approval gate. REST API and CLI alongside the dashboard.
+`C++20` · `QNX 8.0 RTOS` · `Raspberry Pi 5` · `TFLite`
+</details>
 
-## 03 · MetaShift
+### [HyperShift](https://github.com/GautamTalksDev/HyperShift) — infrastructure from plain English
 
-<sub>`Express` · `React` · `Supabase` · `PLpgSQL` · [repo →](https://github.com/GautamTalksDev/MetaShift)</sub>
+Describe what you want deployed; five specialized agents plan, build, scan, ship, and monitor it. **[Live →](https://hyper-shift-dashboard.vercel.app)**
 
-Multi-tenant observability plane: detects conflicts across distributed services, resolves what it can automatically, and lets you replay any incident from the event stream.
+<details><summary><sub><b>what keeps it from doing something stupid</b></sub></summary><br/>
+
+Nothing reaches production without passing an approval gate. Every run is workspace-scoped, metered, and written to an immutable audit log. REST API and CLI alongside the dashboard.
+
+`Next.js 14` · `Node` · `Turborepo` · `Postgres`
+</details>
+
+### [MetaShift](https://github.com/GautamTalksDev/MetaShift) — multi-tenant observability
+
+Detects conflicts across distributed services, resolves what it can, and replays any incident from the event stream.
+
+<details><summary><sub><b>how tenants stay separated</b></sub></summary><br/>
 
 Ten SQL migrations building up tenant-scoped row-level security, usage metering, an append-only audit log, and revocable API keys.
 
-## 04 · Work-Shift
+`Express` · `React` · `Supabase` · `PLpgSQL`
+</details>
 
-<sub>`Fastify` · `Cloudflare Workers` · `pnpm monorepo` · `Playwright` · [repo →](https://github.com/GautamTalksDev/Work-Shift)</sub>
+### [Work-Shift](https://github.com/GautamTalksDev/Work-Shift) — approval inbox for AI drafts
 
-An approval inbox for AI-drafted Slack messages. Drafts queue up; nothing sends until a human clicks approve.
+Drafts queue up in Slack; nothing sends until a human clicks approve.
 
-Ships with `docs/AUTOMATION_REALITY.md`, which labels every feature as fully automated, human-in-the-loop, or demo-only — because the useful thing to document is what *doesn't* work yet.
+<details><summary><sub><b>the file I'm most pleased with</b></sub></summary><br/>
 
-## 05 · DSA
+`docs/AUTOMATION_REALITY.md` labels every feature as fully automated, human-in-the-loop, or demo-only. The useful thing to document is what *doesn't* work yet.
 
-<sub>`Java` · [repo →](https://github.com/GautamTalksDev/DSA-Programming-Assignments)</sub>
+`Fastify` · `Cloudflare Workers` · `pnpm monorepo` · `Playwright`
+</details>
 
-Data structures and algorithms, implemented from scratch through university coursework.
+### [DSA](https://github.com/GautamTalksDev/DSA-Programming-Assignments) — fundamentals
+
+Data structures and algorithms implemented from scratch through coursework. `Java`
 
 ---
-
-## Stack
 
 **Systems** `C++20` `QNX` `Linux` `CMake` `TFLite` `OpenCV`
 **Backend** `Node` `TypeScript` `Fastify` `Express` `Python` `Java`
 **Data** `PostgreSQL` `Supabase` `MongoDB` `row-level security`
 **Platform** `Docker` `Vercel` `Render` `Cloudflare Workers` `GitHub Actions`
 
----
-
-<div align="center">
+<div align="center"><br/>
 <img src="https://raw.githubusercontent.com/GautamTalksDev/GautamTalksDev/output/snake.svg" alt="Contribution graph, consumed" width="100%"/>
 </div>
