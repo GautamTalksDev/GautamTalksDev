@@ -52,11 +52,6 @@ Data structures and algorithms implemented through university coursework.
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=GautamTalksDev&show_icons=true&hide=stars,issues,prs&hide_border=true&bg_color=0d1117&title_color=22d3ee&icon_color=a78bfa&text_color=94a3b8" height="160" alt="GitHub stats"/>
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=GautamTalksDev&layout=compact&hide_border=true&langs_count=6&bg_color=0d1117&title_color=22d3ee&text_color=94a3b8" height="160" alt="Top languages"/>
-
-<br/><br/>
-
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/GautamTalksDev/GautamTalksDev/output/snake-dark.svg" />
   <img alt="contribution snake" src="https://raw.githubusercontent.com/GautamTalksDev/GautamTalksDev/output/snake.svg" />
