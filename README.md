@@ -1,4 +1,4 @@
-<img src="banner.svg" alt="Gautam Khosla — systems that keep running when the network doesn't" width="100%"/>
+<img src="banner-animated.svg" alt="Gautam Khosla — systems that keep running when the network doesn't" width="100%"/>
 
 ### Hi, I'm Gautam.
 
