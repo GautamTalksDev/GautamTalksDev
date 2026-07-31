@@ -1,0 +1,89 @@
+<svg width="1280" height="320" viewBox="0 0 1280 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gautam Khosla — systems that keep running when the network doesn't">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1020"/>
+      <stop offset="1" stop-color="#101726"/>
+    </linearGradient>
+  </defs>
+  <style>
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .sans { font-family: "Segoe UI", Helvetica, Arial, sans-serif; }
+
+    /* cloud uplink: flows, dies, recovers — 8s cycle */
+    .uplink {
+      stroke-dasharray: 7 6;
+      animation: flow 1.2s linear infinite, linkstate 8s linear infinite;
+    }
+    @keyframes flow { to { stroke-dashoffset: -13; } }
+    @keyframes linkstate {
+      0%, 38%  { opacity: 1; }
+      42%, 68% { opacity: 0.12; }
+      72%, 100% { opacity: 1; }
+    }
+
+    /* LINK LOST label appears only during the outage */
+    .lost {
+      opacity: 0;
+      animation: lost 8s linear infinite;
+    }
+    @keyframes lost {
+      0%, 40%  { opacity: 0; }
+      44%, 66% { opacity: 1; }
+      70%, 100% { opacity: 0; }
+    }
+
+    /* safety loop: heartbeat sweep + steady pulse, never interrupted */
+    .loop {
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { stroke-opacity: 0.75; }
+      50%      { stroke-opacity: 1; }
+    }
+    .sweep {
+      stroke-dasharray: 40 1400;
+      animation: sweep 2.6s linear infinite;
+    }
+    @keyframes sweep { to { stroke-dashoffset: -1440; } }
+
+    /* status dot on the device trace */
+    .dot { animation: blink 2s ease-in-out infinite; }
+    @keyframes blink {
+      0%, 100% { opacity: 0.5; }
+      50%      { opacity: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .uplink, .lost, .loop, .sweep, .dot { animation: none; }
+      .lost { opacity: 0.6; }
+    }
+  </style>
+
+  <rect width="1280" height="320" fill="url(#bg)"/>
+
+  <!-- faint grid -->
+  <g stroke="#233047" stroke-width="1" opacity="0.35">
+    <path d="M0 80H1280 M0 160H1280 M0 240H1280"/>
+    <path d="M160 0V320 M320 0V320 M480 0V320 M640 0V320 M800 0V320 M960 0V320 M1120 0V320"/>
+  </g>
+
+  <!-- cloud uplink trace (flickers out and recovers) -->
+  <path class="uplink" d="M40 110 H300 L315 90 L330 130 L345 110 H560 M720 110 H1000 L1015 92 L1030 128 L1045 110 H1240"
+        fill="none" stroke="#5b6b85" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text class="lost mono" x="640" y="116" fill="#c46a5a" font-size="13" text-anchor="middle" letter-spacing="2">LINK LOST</text>
+
+  <!-- safety loop trace: base line + moving bright sweep -->
+  <path class="loop" d="M40 230 H240 L255 200 L268 252 L282 230 H560 L575 200 L588 252 L602 230 H900 L915 200 L928 252 L942 230 H1240"
+        fill="none" stroke="#e8a33d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="sweep" d="M40 230 H240 L255 200 L268 252 L282 230 H560 L575 200 L588 252 L602 230 H900 L915 200 L928 252 L942 230 H1240"
+        fill="none" stroke="#ffd98a" stroke-width="3.5" stroke-linecap="round"/>
+  <circle class="dot" cx="1240" cy="230" r="5" fill="#e8a33d"/>
+
+  <!-- labels -->
+  <text class="mono" x="42" y="94" fill="#5b6b85" font-size="12" letter-spacing="2">CLOUD UPLINK</text>
+  <text class="mono" x="42" y="214" fill="#e8a33d" font-size="12" letter-spacing="2">SAFETY LOOP · ON-DEVICE</text>
+
+  <!-- name + thesis -->
+  <text class="mono" x="640" y="52" fill="#8b98ad" font-size="14" text-anchor="middle" letter-spacing="3">SYSTEMS THAT KEEP RUNNING WHEN THE NETWORK DOESN'T</text>
+  <text class="sans" x="640" y="288" fill="#e9edf5" font-size="30" font-weight="700" text-anchor="middle" letter-spacing="0.5">Gautam Khosla</text>
+</svg>
