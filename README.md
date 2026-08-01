@@ -49,4 +49,4 @@ AI drafts your Slack messages; nothing sends until a human approves. The same hu
 
 ---
 
-📫 developwith.gt@gmail.com · [LinkedIn](https://www.linkedin.com/in/gautam-khosla/) · [YouTube](http://www.youtube.com/@GautamKhoslaOfficial) · [bio.site/gautamtalks](https://bio.site/gautamtalks)
+📫 developwith.gt@gmail.com · [LinkedIn](https://www.linkedin.com/in/gautam-khosla/) · [YouTube](http://www.youtube.com/@GautamKhoslaOfficial) · [gautamkhosla.com](https://gautamkhosla.com/)
