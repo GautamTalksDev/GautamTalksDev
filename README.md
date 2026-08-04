@@ -30,7 +30,7 @@ AI drafts your Slack messages; nothing sends until a human approves. The same hu
 
 **Chronos** — digital twin crisis management across power, airspace, transit, and traffic: 14 live APIs over a NATS broker, three decision frameworks compared side by side, and graceful fallbacks so any upstream outage degrades the system instead of killing it. Built as technical lead of 4 at uOttaHack.
 
-**NeuroDesk** — agentic middleware that turns natural language into audited action: multi-agent orchestration behind budget limits, approval gates, and a full transaction log. Also: **Omni-Context OS**, a stateful RAG memory layer across Slack, email, and web — Top 9 at Backboard.io × McHacks.
+**NeuroDesk** — agentic middleware that turns natural language into audited action: multi-agent orchestration behind budget limits, approval gates, and a full transaction log. Also: **Omni-Context OS**, a stateful RAG memory layer across Slack, email, and web, Top 9 at Backboard.io × McHacks.
 
 ---
 
