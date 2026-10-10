@@ -1,0 +1,43 @@
+# Redraws the DODGE row of the projects board (assets/row-dodge-*.svg) from DODGE's public daily
+# data and commits the four files if the numbers changed.
+#
+# OFF BY DEFAULT. It only runs when you press "Run workflow" in the Actions tab.
+# To make it daily, uncomment the two schedule lines below (after you have reviewed this file).
+#
+# What it touches: reads https://raw.githubusercontent.com/GautamTalksDev/dodge/data/latest.json,
+# runs tools/live.py (Python standard library only, no installs), commits four SVG files.
+name: refresh-dodge-row
+
+on:
+  workflow_dispatch:
+  # schedule:
+  #   - cron: '37 9 * * *'   # daily, after DODGE's own daily run
+
+permissions:
+  contents: read
+
+concurrency:
+  group: refresh-dodge-row
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write   # to commit the redrawn row
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Redraw the row
+        run: python3 tools/live.py
+      - name: Commit if it changed
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/row-dodge-*.svg
+          if git diff --cached --quiet; then
+            echo 'No change.'
+          else
+            git commit -m 'Refresh the DODGE row from its daily data'
+            git push
+          fi
