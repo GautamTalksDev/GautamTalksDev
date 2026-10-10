@@ -1,6 +1,6 @@
 <div align="center">
 
-<a href="https://gautamkhosla.com"><picture><source media="(prefers-color-scheme: dark) and (max-width: 1060px)" srcset="assets/hero-dark-n.svg"><source media="(max-width: 1060px)" srcset="assets/hero-light-n.svg"><source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg"><img alt="Gautam Khosla on a split-flap departure board. Don't take my word for it. Check the receipts below. Now boarding: Counterseal, live. CRA Clock, live. Holdout, in beta." src="assets/hero-light.svg" width="100%"></picture></a>
+<a href="https://gautamkhosla.com"><picture><source media="(prefers-color-scheme: dark) and (max-width: 1060px)" srcset="assets/hero-dark-n.svg?v=ascend"><source media="(max-width: 1060px)" srcset="assets/hero-light-n.svg?v=ascend"><source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg?v=ascend"><img alt="Gautam Khosla on a split-flap departure board. Ascend higher, followed by a lightning bolt and a roller coaster. Now boarding: Counterseal, live. CRA Clock, live. Holdout, in beta." src="assets/hero-light.svg?v=ascend" width="100%"></picture></a>
 
 **Gautam Khosla** · Ottawa, Canada · Computer Engineering at uOttawa
 

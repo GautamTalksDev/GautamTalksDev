@@ -1,12 +1,13 @@
-"""The hero: a split-flap departures board that spells his name, alternates the line
-"Don't take my word for it" / "Check the receipts below", and lists the products boarding now.
+"""The hero: a split-flap departures board that spells his name, then "Ascend higher" followed by a
+lightning bolt and a roller coaster (two pictogram flaps, drawn in pictos.py), and lists the products boarding now.
 
 Wide art is 1600 wide (shown at 560 to 846 px). Narrow art is 720 wide (shown at 278 to 700 px).
 """
 import random
 import glyphs as G
-from flap import Board, tiles_width, word_multi
+from flap import Board, tiles_width
 from anim import fit
+import pictos
 from common import THEMES, AMBER, GREEN, SKY, housing, label, svg_doc, sheen, BLINK
 
 PRODUCTS = [  # since = first public release (repo / npm / Marketplace), checked 10 Oct 2026
@@ -14,8 +15,10 @@ PRODUCTS = [  # since = first public release (repo / npm / Marketplace), checked
     dict(since='10 OCT', name='CRA CLOCK', what='The EU CRA Article 14 clock for GitHub', status='LIVE', color=GREEN),
     dict(since='06 OCT', name='HOLDOUT', what='Phones down, together. A squad goes dark', status='BETA', color=SKY),
 ]
-P1, P2 = "DON'T TAKE MY WORD FOR IT.", 'CHECK THE RECEIPTS BELOW.'
-CYCLE = [0.8, 8.0, 15.0, 22.0, 29.0, 36.0, 43.0]   # line 2 alternates, then rests on the first phrase
+WIDE_TILE = (52, 76)               # row 2 flap size on the wide board (the name's flaps are 96 x 138)
+NARROW_TILE = (44, 66, 4)          # width, height, gap on the narrow board
+HEADLINE = ('ASCEND', 'HIGHER')   # row 2 of the board; a bolt and a roller coaster follow the last word
+ROW_START = 0.8                    # when row 2 first flips (seconds); it flips once and stays
 
 
 def panel_face(B, S, fid, txt, font, size, color, anchor='start', pad=20):
@@ -47,16 +50,56 @@ def mini_clock(cx, cy, r, T):
     return ''.join(out), css
 
 
-def center_pad(s, n):
-    s = s.strip()
-    left = (n - len(s)) // 2
-    return (' ' * left + s).ljust(n)
+def pair_face(B, S, c1, c2, cw, gap):
+    """A double-wide flap showing two letters, one per tile cell: what the coaster flap scrambles through."""
+    key = f'p{c1}{c2}{S["id"]}'
+    upm, cap, _ = G.metrics(B.font)
+    sc = S['fsize'] / upm
+    content = ''
+    for k, c in enumerate((c1, c2)):
+        adv, _ = G.glyph_path(c, B.font)
+        x = k * (cw + gap) + (cw - adv * sc) / 2
+        y = S['h'] / 2 + cap * sc / 2
+        content += f'<use href="#{B.glyph(c)}" transform="translate({x:.1f} {y:.1f}) scale({sc:.4f})" fill="{B.ink}"/>'
+    return B.face_custom(S, key, content)
+
+
+def headline_row(B, S, S2w, x, y, text, start, rng, icons, alphabet='ABCDEFGHIJKLMNOPRSTUVWXYZ'):
+    """One row of flap tiles reading `text` (blank tiles included), then, if `icons`, a bolt tile and a
+    double-wide roller coaster tile. Like every tile on the board they read finished at frame 0, scramble once
+    and settle."""
+    cw, gap = S['w'], S['gap']
+    out = [B.word(S, x, y, text, start, rng, spins=3, interval=0.06, stagger=0.02)]
+    if not icons:
+        return ''.join(out)
+    n = len(text)
+    bolt = B.face_custom(S, 'pbolt', pictos.bolt(S['w'], S['h']))
+    coaster = B.face_custom(S2w, 'pcoaster', pictos.coaster(S2w['w'], S2w['h']))
+
+    def settle(T, cell, final, scramble):
+        seq, last = [final], None
+        for _ in range(rng.randint(3, 4)):
+            c = scramble()
+            while c == last:
+                c = scramble()
+            seq.append(c)
+            last = c
+        seq.append(final)
+        t0 = start + cell * 0.02 + rng.uniform(0, 0.04)
+        return B.flip(T, x + cell * (cw + gap), y, seq, [t0 + i * 0.06 for i in range(len(seq) - 1)])
+
+    one = lambda: B.face_char(S, rng.choice(alphabet))
+    two = lambda: pair_face(B, S2w, rng.choice(alphabet), rng.choice(alphabet), cw, gap)
+    out.append(settle(S, n, bolt, one))
+    out.append(settle(S2w, n + 1, coaster, two))
+    return ''.join(out)
 
 
 def hero(theme, narrow=False):
     T = THEMES[theme]
     rng = random.Random(7)
     B = Board(ink='#f3efe4')
+    B.defs.append(pictos.defs())
     body = []
     css_extra = ''
     if not narrow:
@@ -73,9 +116,12 @@ def hero(theme, narrow=False):
         name = 'GAUTAM KHOSLA'
         x1 = (W - tiles_width(len(name), 96, 10)) / 2
         body.append(B.word(S1, x1, 128, name, 0.6, rng, spins=3, interval=0.055))
-        S2 = B.size(46, 68, r=5, fsize=44); S2['gap'] = 6
-        x2 = (W - tiles_width(len(P1), 46, 6)) / 2
-        body.append(word_multi(B, S2, x2, 294, [P1, P2, P1, P2, P1, P2, P1], CYCLE, rng, spins=3, interval=0.06))
+        tw, th = WIDE_TILE
+        S2 = B.size(tw, th, r=5, fsize=tw * 0.96); S2['gap'] = 6
+        S2w = B.size(2 * tw + 6, th, r=5, fsize=tw * 0.96)             # the coaster flap is two tiles wide
+        text = ' '.join(HEADLINE) + ' '
+        x2 = (W - tiles_width(len(text) + 3, tw, 6)) / 2               # letters, a blank tile, a bolt tile, a coaster flap
+        body.append(headline_row(B, S2, S2w, x2, (128 + 138 + 396) / 2 - th / 2, text, ROW_START, rng, icons=True))
         body.append(f'<rect x="64" y="396" width="{W-128}" height="1" fill="{T["rule"]}"/>')
         cols = (('SINCE', 116), ('PRODUCT', 340), ('DESTINATION', 744), ('STATUS', 1294))
         for txt, x in cols:
@@ -110,13 +156,15 @@ def hero(theme, narrow=False):
         for i, word in enumerate(['GAUTAM', 'KHOSLA']):
             x = (W - tiles_width(6, 96, 8)) / 2
             body.append(B.word(S1, x, 116 + i * 146, word, 0.6 + i * 0.15, rng, spins=3, interval=0.055))
-        S2 = B.size(38, 58, r=4, fsize=37); S2['gap'] = 3.5
-        n = 15
-        rows = [("DON'T TAKE", 'CHECK THE'), ('MY WORD FOR IT.', 'RECEIPTS BELOW.')]
-        for i, (a, b2) in enumerate(rows):
-            a, b2 = center_pad(a, n), center_pad(b2, n)
-            x = (W - tiles_width(n, 38, 3.5)) / 2
-            body.append(word_multi(B, S2, x, 430 + i * 68, [a, b2, a, b2, a, b2, a], [c + i * 0.1 for c in CYCLE], rng, spins=3, interval=0.06))
+        tw, th, g = NARROW_TILE
+        S2 = B.size(tw, th, r=4, fsize=tw * 0.96); S2['gap'] = g
+        S2w = B.size(2 * tw + g, th, r=4, fsize=tw * 0.96)
+        n = len(HEADLINE[1]) + 4                                       # the widest row: a word, a blank tile, a bolt tile, a coaster flap
+        x = (W - tiles_width(n, tw, g)) / 2
+        for i, word in enumerate(HEADLINE):
+            last = i == len(HEADLINE) - 1
+            text = (word + ' ') if last else word.ljust(n)
+            body.append(headline_row(B, S2, S2w, x, 420 + i * (th + 10), text, ROW_START + i * 0.1, rng, icons=last))
         body.append(f'<rect x="40" y="590" width="{W-80}" height="1" fill="{T["rule"]}"/>')
         body.append(label('PRODUCT', 52, 632, 22, T['label2']))
         body.append(label('STATUS', 668, 632, 22, T['label2'], 'end'))
@@ -136,7 +184,8 @@ def hero(theme, narrow=False):
         body.append(G.text('Even the failures are on the record.', 'iserif', 37, W / 2, 946, 'middle', fill=ink))
         body.append(sheen(W, H, 22))
     style = B.style() + BLINK + css_extra
-    title = "Gautam Khosla. Don't take my word for it. Check the receipts below."
-    desc = ('A split-flap departure board flips to spell Gautam Khosla. The second line alternates between "Don\'t take my word for it" '
-            'and "Check the receipts below". Now boarding: Counterseal, live. CRA Clock, live. Holdout, in beta.')
+    title = 'Gautam Khosla. Ascend higher, with a lightning bolt and a roller coaster.'
+    desc = ('A split-flap departure board flips to spell Gautam Khosla. The second line reads "Ascend higher" and ends with two '
+            'pictogram flaps: an amber lightning bolt, and a roller coaster climbing a lift hill toward a loop. '
+            'Now boarding: Counterseal, live. CRA Clock, live. Holdout, in beta.')
     return svg_doc(W, H, title, B.defs_svg() + ''.join(body), style, desc=desc)

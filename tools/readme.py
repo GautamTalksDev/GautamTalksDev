@@ -11,13 +11,15 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 NARROW = '(max-width: 1060px)'
 
 
-def themed(base, alt, href):
+def themed(base, alt, href, v=''):
+    """`v` is a cache-busting query for images that changed (GitHub serves repo images through a CDN that caches them)."""
     a = f'assets/{base}'
+    q = f'?v={v}' if v else ''
     return (f'<a href="{href}"><picture>'
-            f'<source media="(prefers-color-scheme: dark) and {NARROW}" srcset="{a}-dark-n.svg">'
-            f'<source media="{NARROW}" srcset="{a}-light-n.svg">'
-            f'<source media="(prefers-color-scheme: dark)" srcset="{a}-dark.svg">'
-            f'<img alt="{alt}" src="{a}-light.svg" width="100%">'
+            f'<source media="(prefers-color-scheme: dark) and {NARROW}" srcset="{a}-dark-n.svg{q}">'
+            f'<source media="{NARROW}" srcset="{a}-light-n.svg{q}">'
+            f'<source media="(prefers-color-scheme: dark)" srcset="{a}-dark.svg{q}">'
+            f'<img alt="{alt}" src="{a}-light.svg{q}" width="100%">'
             f'</picture></a>')
 
 
@@ -29,8 +31,8 @@ def card(base, alt, href):
             f'</picture></a>')
 
 
-HERO = themed('hero', "Gautam Khosla on a split-flap departure board. Don't take my word for it. Check the receipts below. "
-              'Now boarding: Counterseal, live. CRA Clock, live. Holdout, in beta.', 'https://gautamkhosla.com')
+HERO = themed('hero', 'Gautam Khosla on a split-flap departure board. Ascend higher, followed by a lightning bolt and a roller coaster. '
+              'Now boarding: Counterseal, live. CRA Clock, live. Holdout, in beta.', 'https://gautamkhosla.com', v='ascend')
 
 README = f'''<div align="center">
 
@@ -145,7 +147,7 @@ def main():
     bad = re.findall(r'[\u2013\u2014]|--', prose)   # en and em dashes, or a double hyphen
     if bad:
         raise SystemExit(f'dashes in README: {bad}')
-    for m in re.findall(r'(?:src|srcset)="(assets/[^"]+)"', out):
+    for m in re.findall(r'(?:src|srcset)="(assets/[^"?]+)(?:\?[^"]*)?"', out):
         if not os.path.exists(os.path.join(ROOT, m)):
             raise SystemExit(f'missing asset {m}')
     with open(os.path.join(ROOT, 'README.md'), 'w', encoding='utf-8', newline='\n') as f:
