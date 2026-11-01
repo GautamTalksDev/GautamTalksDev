@@ -1,0 +1,95 @@
+# Redraws the profile README every night (and whenever profile.toml or flightlog/ changes on main).
+#
+# Least privilege, in two jobs:
+#   draw    reads only (contents: read). Runs flightlog/build.py with the Python standard library: no installs,
+#           no third-party code. Its token can read this public repository and public GitHub data, nothing else.
+#   commit  can write (contents: write) but runs none of the build code: it takes the drawn files, checks that
+#           only README.md, assets/*.svg and flightlog/live.json + assets.txt changed, and commits them.
+# Every action is pinned to a full commit SHA (GitHub's own actions only). No secrets, no PATs, no pull_request triggers.
+name: flight-log
+
+on:
+  schedule:
+    - cron: '17 6 * * *'   # daily, about 2 am in Ottawa
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['profile.toml', 'flightlog/**']
+
+permissions: {}
+
+concurrency:
+  group: flight-log
+  cancel-in-progress: false
+
+jobs:
+  draw:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Draw the README from profile.toml and public data
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          FLIGHTLOG_CI: '1'
+        run: python3 -I flightlog/build.py
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: flight-log
+          path: |
+            README.md
+            assets/
+            flightlog/live.json
+            flightlog/assets.txt
+          retention-days: 1
+          if-no-files-found: error
+
+  commit:
+    needs: draw
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: flight-log
+          path: drawn
+      - name: Commit only the drawn files
+        run: |
+          set -euo pipefail
+          # copy in the drawn files, and drop images the manifest no longer lists
+          # sanity before touching anything: a full manifest of plain names, and every image the README uses present
+          n=$(grep -cxE '[a-z0-9-]+\.svg' drawn/flightlog/assets.txt || true)
+          total=$(grep -c . drawn/flightlog/assets.txt || true)
+          if [ "$n" -lt 40 ] || [ "$n" -ne "$total" ]; then echo "refusing: manifest looks wrong ($n of $total)"; exit 1; fi
+          for f in $(grep -oE 'assets/[a-z0-9-]+\.svg' drawn/README.md | sort -u); do
+            [ -f "drawn/$f" ] || { echo "refusing: README uses $f but it was not drawn"; exit 1; }
+          done
+          if find drawn -type l | grep -q .; then echo 'refusing: symlink in the artifact'; exit 1; fi
+          cp drawn/README.md README.md
+          cp drawn/flightlog/live.json drawn/flightlog/assets.txt flightlog/
+          find drawn/assets -maxdepth 1 -type f -name '*.svg' -exec cp {} assets/ \;
+          for f in assets/*.svg; do
+            grep -qxF "$(basename "$f")" flightlog/assets.txt || git rm -q -- "$f"
+          done
+          rm -r drawn
+          git add README.md flightlog/live.json flightlog/assets.txt assets
+          # refuse to commit anything outside the allowlist (the list is captured first, so a git failure stops the run)
+          changed=$(git diff --cached --name-only --no-renames)
+          if printf '%s\n' "$changed" | grep -vE '^(README\.md|flightlog/live\.json|flightlog/assets\.txt|assets/[a-z0-9-]+\.svg)?$'; then
+            echo 'refusing: files outside the allowlist changed'; exit 1
+          fi
+          if git diff --cached --quiet; then
+            echo 'No change.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -q -m 'Redraw the flight log from profile.toml and public data'
+          git push

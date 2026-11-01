@@ -1,0 +1,263 @@
+# Everything on the profile README comes from this file.
+# Edit it, push, and the Action (.github/workflows/flight-log.yml) redraws every image and README.md.
+#
+# Adding a product:   copy a [[missions]] block, fill it in, pick a patch (seal, clock, flame, orbit, shield).
+# Adding a project:   copy an [[orbit]] block. status = "live", "beta", "parked" or "docked".
+# Every entry needs a public url: private work never goes on this page (the build refuses an entry without one).
+# Adding a study: copy an [[expeditions]] block (name, url, field, visual, question, published, optional links).
+# Adding a build to the hangar: name, url, about (full sentence) and tag (one short line for the tile).
+# Dates are ISO (YYYY-MM-DD). Keep every claim true: the README is only as good as this file.
+
+[identity]
+name = "Gautam Khosla"
+handle = "GautamTalksDev"
+place = "Ottawa, Canada"
+coords = "45.42° N  75.70° W"
+motto = "Ascend higher."
+line = "I build software you can check instead of trust."
+school = "Computer Engineering at uOttawa."
+site = "https://gautamkhosla.com"
+
+[[links]]
+label = "gautamkhosla.com"
+url = "https://gautamkhosla.com"
+primary = true
+
+[[links]]
+label = "YouTube"
+url = "https://www.youtube.com/@GautamKhoslaOfficial"
+
+[[links]]
+label = "LinkedIn"
+url = "https://www.linkedin.com/in/gautam-khosla/"
+
+[[links]]
+label = "Gautam Talks"
+url = "https://gautamtalks.com"
+
+[[links]]
+label = "Email"
+url = "mailto:developwith.gt@gmail.com"
+
+# ---------------------------------------------------------------- missions (products)
+[[missions]]
+name = "Counterseal"
+patch = "seal"
+color = "#C8F560"
+status = "live"
+note = "Free public beta"
+launched = 2026-10-10
+tagline = "Every irreversible action gets a second seal."
+about = "Your agent gets a scoped token instead of your real API key. Deletes, force pushes and refunds wait for your passkey, and every decision can land in a public log anyone can check."
+command = "npx counterseal login"
+url = "https://counterseal.gautamkhosla.com"
+
+[[missions]]
+name = "CRA Clock"
+patch = "clock"
+color = "#FF5A4D"
+status = "live"
+note = "GitHub Action, v1"
+launched = 2026-10-10
+tagline = "24 hours starts the moment you know."
+about = "The EU Cyber Resilience Act reporting clock as a GitHub Action: an SBOM from 12 lockfile formats, checked against OSV, CISA KEV and EPSS, with Article 14 deadlines and drafts."
+command = "uses: GautamTalksDev/cra-clock@v1"
+url = "https://craclock.gautamkhosla.com"
+
+[[missions]]
+name = "Holdout"
+patch = "flame"
+color = "#FF9A3D"
+status = "beta"
+note = "Android waitlist"
+launched = 2026-10-06
+tagline = "Phones down. Together."
+about = "A campfire you keep alive with your friends. Everyone goes dark at the same time; if anyone breaks, everyone sees. No account, no ads, no tracking."
+command = "holdout.gautamkhosla.com/beta"
+url = "https://holdout.gautamkhosla.com"
+
+# ---------------------------------------------------------------- in orbit (projects)
+[[orbit]]
+name = "mcp-pin"
+status = "live"
+since = 2026-09-02
+about = "Pins the MCP tool definitions you approved and blocks the session when they change. Zero runtime dependencies, MIT."
+url = "https://mcp-pin.gautamkhosla.com"
+
+[[orbit]]
+name = "DODGE"
+status = "live"
+since = 2026-10-06
+about = "Who makes Starlink dodge: a daily screen of predicted close approaches in low Earth orbit, signed and verifiable."
+url = "https://dodge.gautamkhosla.com"
+live = "dodge"
+
+[[orbit]]
+name = "LEASH"
+status = "docked"
+since = 2026-10-07
+about = "Agents get tokens, not the keys. Its passkey holds now live on inside Counterseal."
+docked_with = "Counterseal"
+url = "https://counterseal.gautamkhosla.com"
+
+# ---------------------------------------------------------------- expeditions (open research)
+# Each study gets an animated tile. No verdicts here: the repo holds the full log for anyone who wants it.
+# visual: "molecule", "bitgrid", "hexscan", "crowd" or "plimsoll" (or "orbit" until a new one is drawn).
+[[expeditions]]
+name = "label-to-lab"
+url = "https://github.com/GautamTalksDev/label-to-lab"
+field = "Food chemistry"
+visual = "molecule"
+question = "Can a packaged food's ingredient list predict its measured acrylamide?"
+published = ["Code", "Data", "Pre-registered rule"]
+
+[[expeditions]]
+name = "assay-gpu"
+url = "https://github.com/GautamTalksDev/assay-gpu"
+field = "GPU reliability"
+visual = "bitgrid"
+question = "Can a checksum catch exponent-bit flips in bfloat16 matrix multiplies?"
+published = ["Code", "Paper"]
+links = [{ label = "paper", url = "https://doi.org/10.5281/zenodo.22054179" }]
+
+[[expeditions]]
+name = "Lading"
+url = "https://github.com/GautamTalksDev/Lading"
+field = "Binary analysis"
+visual = "hexscan"
+question = "Can you prove vulnerabilities are absent from shipped binaries?"
+published = ["Paper", "Corpus", "Audit trail"]
+links = [{ label = "paper", url = "https://doi.org/10.5281/zenodo.22093232" }]
+
+[[expeditions]]
+name = "jevbench"
+url = "https://github.com/GautamTalksDev/jevbench"
+field = "Model calibration"
+visual = "crowd"
+question = "Does a model's confidence track how much people disagree?"
+published = ["Code", "Preregistration", "Paper"]
+links = [{ label = "preregistration", url = "https://doi.org/10.5281/zenodo.22971413" },
+         { label = "paper", url = "https://doi.org/10.5281/zenodo.22971491" }]
+
+[[expeditions]]
+name = "PLIMSOLL"
+url = "https://github.com/GautamTalksDev/plimsoll"
+field = "Evaluation integrity"
+visual = "plimsoll"
+question = "What if every evaluation sealed its metric and threshold before the run?"
+published = ["Code", "Pre-registered tests"]
+
+# ---------------------------------------------------------------- the hangar (more public builds)
+[[hangar]]
+name = "Refledger"
+url = "https://github.com/GautamTalksDev/refledger"
+about = "Checks whether a workflow runs the code you think it does, pins every action, and backs it with a public signed ledger"
+tag = "Proves a workflow runs the code you think, on a public signed ledger"
+
+[[hangar]]
+name = "Plumbline"
+url = "https://github.com/GautamTalksDev/Plumbline"
+about = "A public, append-only log of MCP tool definitions that catches changes after publication"
+tag = "An append-only public log of MCP tool definitions"
+
+[[hangar]]
+name = "Cairn"
+url = "https://github.com/GautamTalksDev/Cairn"
+about = "Integrity monitoring for GPS-denied positioning: flags when a robot's pose estimate has silently gone wrong"
+tag = "Integrity monitoring for GPS-denied positioning"
+
+[[hangar]]
+name = "Vernier"
+url = "https://github.com/GautamTalksDev/Vernier"
+about = "A deterministic diff for agent behaviour: record a run, re-drive it after a change, get a rule-based verdict"
+tag = "A deterministic diff for agent behaviour, with rule-based verdicts"
+
+[[hangar]]
+name = "Keyring"
+url = "https://github.com/GautamTalksDev/keyring"
+about = "An access governance agent: finds the grants people and agents still hold, waits for a human, writes a verifiable audit trail"
+tag = "Access governance agent with a verifiable audit trail"
+
+[[hangar]]
+name = "Bedrock"
+url = "https://github.com/GautamTalksDev/Bedrock"
+about = "Self-healing web scrapers; every automatic repair is tested against golden fixtures before it ships"
+tag = "Self-healing scrapers; every repair tested on golden fixtures"
+
+[[hangar]]
+name = "Ephemera"
+url = "https://github.com/GautamTalksDev/Ephemera"
+about = "Preview environments without Kubernetes: open a PR, get a full stack with a live URL; close it, it is gone"
+tag = "Preview environments without Kubernetes, one per PR"
+
+[[hangar]]
+name = "mayfly-guest"
+url = "https://github.com/GautamTalksDev/mayfly-guest"
+about = "A snapshot-optimised Linux guest for Firecracker microVMs, with open measurement harnesses"
+tag = "A snapshot-optimised Linux guest for Firecracker microVMs"
+
+[[hangar]]
+name = "Porchlight"
+url = "https://github.com/GautamTalksDev/porchlight"
+about = "An offline-first emergency network for neighbourhoods, for when the grid goes dark"
+tag = "An offline-first emergency network for neighbourhoods"
+
+[[hangar]]
+name = "takehome"
+url = "https://github.com/GautamTalksDev/takehome"
+about = "Canadian payroll deduction calculation, versioned by effective date, that shows its work"
+tag = "Canadian payroll deductions, versioned, showing its work"
+
+[[hangar]]
+name = "groundhog"
+url = "https://github.com/GautamTalksDev/groundhog"
+about = "Reads local coding-agent history and ranks the chores you keep paying an agent to redo. Local only"
+tag = "Ranks the chores you keep paying an agent to redo"
+
+[[hangar]]
+name = "AEGIS"
+url = "https://github.com/GautamTalksDev/AEGIS"
+about = "Edge AI worksite safety on QNX 8.0 and a Raspberry Pi 5 in C++20; the safety loop never touches the network"
+tag = "Edge AI worksite safety on QNX 8.0 and a Raspberry Pi 5"
+
+[[hangar]]
+name = "HyperShift"
+url = "https://github.com/GautamTalksDev/HyperShift"
+about = "Describe infrastructure in plain English; five agents plan, build, scan, deploy and monitor it"
+tag = "Plain-English infrastructure; five agents build and run it"
+
+[[hangar]]
+name = "MetaShift"
+url = "https://github.com/GautamTalksDev/MetaShift"
+about = "Multi-tenant observability that detects and auto-resolves conflicts across services, with incident replay"
+tag = "Multi-tenant observability that auto-resolves conflicts"
+
+[[hangar]]
+name = "Work-Shift"
+url = "https://github.com/GautamTalksDev/Work-Shift"
+about = "An approval inbox for Slack: review AI-drafted messages before they send"
+tag = "An approval inbox for AI-drafted Slack messages"
+
+[[hangar]]
+name = "AeroGuard"
+url = "https://github.com/GautamTalksDev/aeroguard-tech"
+about = "SOC incident triage built at ConUHacks, with similar-incident search and live updates"
+tag = "SOC incident triage, built at ConUHacks"
+
+[[hangar]]
+name = "gautamtalks.com"
+url = "https://github.com/GautamTalksDev/gautamtalks-site"
+about = "The Gautam Talks creator site: hand written, zero frameworks, with a 3D room hidden inside"
+tag = "The creator site: zero frameworks, a 3D room inside"
+
+[[hangar]]
+name = "gautamkhosla.com"
+url = "https://github.com/GautamTalksDev/gautamtalksdev.github.io"
+about = "A personal site built as an engineering spec sheet; no framework, works offline"
+tag = "A personal site built as an engineering spec sheet"
+
+[[hangar]]
+name = "DSA assignments"
+url = "https://github.com/GautamTalksDev/DSA-Programming-Assignments"
+about = "Data structures and algorithms in Java, from university programming assignments"
+tag = "Data structures and algorithms in Java"

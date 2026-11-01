@@ -1,0 +1,165 @@
+{
+ "contrib": {
+  "last_day": "2026-10-31",
+  "total": 1393,
+  "week0": "2025-10-26",
+  "weeks": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   5,
+   7,
+   12,
+   1,
+   0,
+   1,
+   25,
+   4,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   6,
+   0,
+   0,
+   162,
+   127,
+   125,
+   73,
+   141,
+   113,
+   4,
+   8,
+   110,
+   138,
+   260,
+   31,
+   38,
+   2
+  ]
+ },
+ "dodge": {
+  "day": "2026-11-01",
+  "u1": 443,
+  "u5": 11688
+ },
+ "repos": {
+  "https://github.com/GautamTalksDev/AEGIS": {
+   "language": "C++",
+   "public": true
+  },
+  "https://github.com/GautamTalksDev/Bedrock": {
+   "language": "TypeScript",
+   "public": true
+  },
+  "https://github.com/GautamTalksDev/Cairn": {
+   "language": "Python",
+   "public": true
+  },
+  "https://github.com/GautamTalksDev/DSA-Programming-Assignments": {
+   "language": "Java",
+   "public": true
+  },
+  "https://github.com/GautamTalksDev/Ephemera": {
+   "language": "TypeScript",
+   "public": true
+  },
+  "https://github.com/GautamTalksDev/HyperShift": {
+   "language": "TypeScript",
+   "public": true
+  },
+  "https://github.com/GautamTalksDev/Lading": {
+   "language": "Go",
+   "public": true
+  },
+  "https://github.com/GautamTalksDev/MetaShift": {
+   "language": "JavaScript",
+   "public": true
+  },
+  "https://github.com/GautamTalksDev/Plumbline": {
+   "language": "Go",
+   "public": true
+  },
+  "https://github.com/GautamTalksDev/Vernier": {
+   "language": "Python",
+   "public": true
+  },
+  "https://github.com/GautamTalksDev/Work-Shift": {
+   "language": "TypeScript",
+   "public": true
+  },
+  "https://github.com/GautamTalksDev/aeroguard-tech": {
+   "language": "Python",
+   "public": true
+  },
+  "https://github.com/GautamTalksDev/assay-gpu": {
+   "language": "Python",
+   "public": true
+  },
+  "https://github.com/GautamTalksDev/gautamtalks-site": {
+   "language": "JavaScript",
+   "public": true
+  },
+  "https://github.com/GautamTalksDev/gautamtalksdev.github.io": {
+   "language": "HTML",
+   "public": true
+  },
+  "https://github.com/GautamTalksDev/groundhog": {
+   "language": "Python",
+   "public": true
+  },
+  "https://github.com/GautamTalksDev/jevbench": {
+   "language": "Python",
+   "public": true
+  },
+  "https://github.com/GautamTalksDev/keyring": {
+   "language": "TypeScript",
+   "public": true
+  },
+  "https://github.com/GautamTalksDev/label-to-lab": {
+   "language": "Python",
+   "public": true
+  },
+  "https://github.com/GautamTalksDev/mayfly-guest": {
+   "language": "Shell",
+   "public": true
+  },
+  "https://github.com/GautamTalksDev/plimsoll": {
+   "language": "Go",
+   "public": true
+  },
+  "https://github.com/GautamTalksDev/porchlight": {
+   "language": "TypeScript",
+   "public": true
+  },
+  "https://github.com/GautamTalksDev/refledger": {
+   "language": "Rust",
+   "public": true
+  },
+  "https://github.com/GautamTalksDev/takehome": {
+   "language": "Rust",
+   "public": true
+  }
+ }
+}
