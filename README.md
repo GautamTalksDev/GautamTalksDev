@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<a href="https://gautamkhosla.com"><picture><source media="(prefers-color-scheme: dark) and (max-width: 767px)" srcset="assets/hero-dark-n.svg?v=2026-11-09"><source media="(max-width: 767px)" srcset="assets/hero-light-n.svg?v=2026-11-09"><source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg?v=2026-11-09"><img alt="Gautam Khosla. Ascend higher. I build software you can check instead of trust. A layered paper map floats on the page: the mountain is his real public GitHub contributions, 1 metre each, so the summit stands at 1,399 m on 9 NOV 2026. The route climbs from base camp (26 JUL 2026) through a camp at each release, and from the summit a trajectory leaves the map." src="assets/hero-light.svg?v=2026-11-09" width="100%"></picture></a>
+<a href="https://gautamkhosla.com"><picture><source media="(prefers-color-scheme: dark) and (max-width: 767px)" srcset="assets/hero-dark-n.svg?v=2026-11-10"><source media="(max-width: 767px)" srcset="assets/hero-light-n.svg?v=2026-11-10"><source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg?v=2026-11-10"><img alt="Gautam Khosla. Ascend higher. I build software you can check instead of trust. A layered paper map floats on the page: the mountain is his real public GitHub contributions, 1 metre each, so the summit stands at 1,399 m on 10 NOV 2026. The route climbs from base camp (26 JUL 2026) through a camp at each release, and from the summit a trajectory leaves the map." src="assets/hero-light.svg?v=2026-11-10" width="100%"></picture></a>
 
 <br>
 
@@ -26,7 +26,7 @@
 
 <a href="https://mcp-pin.gautamkhosla.com"><picture><source media="(prefers-color-scheme: dark) and (max-width: 767px)" srcset="assets/orbit-1-dark-n.svg"><source media="(max-width: 767px)" srcset="assets/orbit-1-light-n.svg"><source media="(prefers-color-scheme: dark)" srcset="assets/orbit-1-dark.svg"><img alt="mcp-pin: camp i  ·  in orbit since 2 sep 2026. Pins the MCP tool definitions you approved and blocks the session when they change. Zero runtime dependencies, MIT. Status: live." src="assets/orbit-1-light.svg" width="100%"></picture></a>
 
-<a href="https://dodge.gautamkhosla.com"><picture><source media="(prefers-color-scheme: dark) and (max-width: 767px)" srcset="assets/orbit-2-dark-n.svg?v=2026-11-09"><source media="(max-width: 767px)" srcset="assets/orbit-2-light-n.svg?v=2026-11-09"><source media="(prefers-color-scheme: dark)" srcset="assets/orbit-2-dark.svg?v=2026-11-09"><img alt="DODGE: camp ii  ·  in orbit since 6 oct 2026. Who makes Starlink dodge: a daily screen of predicted close approaches in low Earth orbit, signed and verifiable. Live: 12,084 predicted passes under 5 km  ·  499 under 1 km  ·  run of 9 nov. Status: live." src="assets/orbit-2-light.svg?v=2026-11-09" width="100%"></picture></a>
+<a href="https://dodge.gautamkhosla.com"><picture><source media="(prefers-color-scheme: dark) and (max-width: 767px)" srcset="assets/orbit-2-dark-n.svg?v=2026-11-10"><source media="(max-width: 767px)" srcset="assets/orbit-2-light-n.svg?v=2026-11-10"><source media="(prefers-color-scheme: dark)" srcset="assets/orbit-2-dark.svg?v=2026-11-10"><img alt="DODGE: camp ii  ·  in orbit since 6 oct 2026. Who makes Starlink dodge: a daily screen of predicted close approaches in low Earth orbit, signed and verifiable. Live: 12,010 predicted passes under 5 km  ·  522 under 1 km  ·  run of 10 nov. Status: live." src="assets/orbit-2-light.svg?v=2026-11-10" width="100%"></picture></a>
 
 <a href="https://counterseal.gautamkhosla.com"><picture><source media="(prefers-color-scheme: dark) and (max-width: 767px)" srcset="assets/orbit-3-dark-n.svg"><source media="(max-width: 767px)" srcset="assets/orbit-3-light-n.svg"><source media="(prefers-color-scheme: dark)" srcset="assets/orbit-3-dark.svg"><img alt="LEASH: docked with counterseal. Agents get tokens, not the keys. Its passkey holds now live on inside Counterseal. Status: docked." src="assets/orbit-3-light.svg" width="100%"></picture></a>
 
@@ -54,6 +54,6 @@
 
 <br>
 
-<picture><source media="(max-width: 767px)" srcset="assets/footer-n.svg?v=2026-11-09"><img src="assets/footer.svg?v=2026-11-09" width="100%" alt="End of log. Base camp, Ottawa, Canada, elevation 70 m. Last telemetry 9 NOV 2026. Every image on this page is redrawn nightly from profile.toml."></picture>
+<picture><source media="(max-width: 767px)" srcset="assets/footer-n.svg?v=2026-11-10"><img src="assets/footer.svg?v=2026-11-10" width="100%" alt="End of log. Base camp, Ottawa, Canada, elevation 70 m. Last telemetry 10 NOV 2026. Every image on this page is redrawn nightly from profile.toml."></picture>
 
 <div align="center"><sub>Every image here is an SVG in this repository, drawn from <a href="profile.toml">profile.toml</a> by <a href="flightlog/build.py">flightlog/build.py</a> and redrawn every night by a GitHub Action. Text is drawn as paths: no fonts, scripts or trackers.</sub></div>
