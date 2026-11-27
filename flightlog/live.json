@@ -1,6 +1,6 @@
 {
  "contrib": {
-  "last_day": "2026-11-26",
+  "last_day": "2026-11-27",
   "total": 1400,
   "week0": "2025-11-23",
   "weeks": [
@@ -60,9 +60,9 @@
   ]
  },
  "dodge": {
-  "day": "2026-11-26",
-  "u1": 490,
-  "u5": 12065
+  "day": "2026-11-27",
+  "u1": 470,
+  "u5": 12142
  },
  "repos": {
   "https://github.com/GautamTalksDev/AEGIS": {
